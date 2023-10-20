@@ -39,7 +39,7 @@ export default function Comment({ comment, depth }: CommentProps) {
                         onClick={handleReply}
                         className='bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600'
                     >
-                        Reply
+                        Log
                     </button>
                 </div>
             }

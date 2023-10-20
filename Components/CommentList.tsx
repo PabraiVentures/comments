@@ -3,11 +3,15 @@
 import { useState } from 'react'
 import Comment from './Comment'
 import loadValues, { EnhancedValue, newEnhancedValue } from '@/app/valuesLoader'
+import ls from 'local-storage'
+
 
 export default function CommentsList() {
     const [comments, setComments] = useState(() => {
         let k = loadValues()
-        debugger;
+        let g = ls.get("pies") || "empty"
+        console.log("pies is " + JSON.stringify(g))
+        ls.set("pies", "apple")
         return loadValues()
     })
     const [newComment, setNewComment] = useState<EnhancedValue>(newEnhancedValue())
