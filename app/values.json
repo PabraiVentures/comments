@@ -1,0 +1,134 @@
+[
+    {
+        "name": "Reason",
+        "id": "0",
+        "childrenIDs": [
+            "1",
+            "2"
+        ]
+    },
+    {
+        "name": "Continuous Learning & Growth",
+        "id": "1"
+    },
+    {
+        "name": "Logical Thinking: Decision-making & Objectivity",
+        "id": "2"
+    },
+    {
+        "name": "Body Vitality",
+        "id": "3",
+        "childrenIDs": [
+            "4",
+            "5",
+            "6"
+        ]
+    },
+    {
+        "name": "Strength: Protein intake & Weightlifting",
+        "id": "4"
+    },
+    {
+        "name": "Appearance: Lean physique & Caloric management",
+        "id": "5"
+    },
+    {
+        "name": "Health: Cardio, Glucose regulation, Sleep, Hydration",
+        "id": "6"
+    },
+    {
+        "name": "Material Achievement",
+        "id": "7",
+        "childrenIDs": [
+            "8",
+            "9",
+            "10"
+        ]
+    },
+    {
+        "name": "Financial: Independence & Productivity",
+        "id": "8"
+    },
+    {
+        "name": "Possessions: Functionality & Aesthetic value",
+        "id": "9"
+    },
+    {
+        "name": "Environment: Cleanliness, Purpose, Aesthetics",
+        "id": "10"
+    },
+    {
+        "name": "Spirit & Self-Esteem",
+        "id": "11",
+        "childrenIDs": [
+            "12",
+            "13"
+        ]
+    },
+    {
+        "name": "Integrity: Consistency & Authenticity",
+        "id": "12"
+    },
+    {
+        "name": "Emotional Wellbeing: Rationally processed & joy from achievement of values",
+        "id": "13"
+    },
+    {
+        "name": "Social Relations",
+        "id": "14",
+        "childrenIDs": [
+            "15",
+            "16",
+            "17"
+        ]
+    },
+    {
+        "name": "Relationships: Romantic (values-based) & Friendships (mutual respect)",
+        "id": "15"
+    },
+    {
+        "name": "Professional Ties: Mutual goals & expertise appreciation",
+        "id": "16"
+    },
+    {
+        "name": "Justice: Reciprocity, Judgement, & Fair trade",
+        "id": "17"
+    },
+    {
+        "name": "Purpose & Productivity",
+        "id": "18",
+        "childrenIDs": [
+            "19",
+            "20",
+            "21"
+        ]
+    },
+    {
+        "name": "Creative Ventures: Innovation & delivery to market",
+        "id": "19"
+    },
+    {
+        "name": "Skill Mastery: Professional excellence & continuous adaptation",
+        "id": "20"
+    },
+    {
+        "name": "Leisure: Value-aligned activities & explorations",
+        "id": "21"
+    },
+    {
+        "name": "Intellectual Growth",
+        "id": "22",
+        "childrenIDs": [
+            "23",
+            "24"
+        ]
+    },
+    {
+        "name": "Value-affirming content consumption",
+        "id": "23"
+    },
+    {
+        "name": "Stimulating & challenging material",
+        "id": "24"
+    }
+]
