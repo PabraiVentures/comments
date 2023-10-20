@@ -13,10 +13,11 @@ export interface EnhancedValue {
     id: string;
     name: string;
     children: EnhancedValue[];
+    comments: CommentItem[]
 }
 
 export function newEnhancedValue() {
-    return { id: uuidv4(), name: "", children: [] }
+    return { id: uuidv4(), name: "", children: [], comments: [] }
 }
 
 export default function loadValues() {
@@ -42,6 +43,7 @@ export default function loadValues() {
         let childrenIDs = value?.childrenIDs ?? []
         return {
             ...value,
+            comments: [], // todo load in comments
             children: childrenIDs
                 .map((id) => valuesById.get(id))
                 .filter((value): value is Value => value !== undefined)

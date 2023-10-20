@@ -1,10 +1,10 @@
-import CommentsList from '@/Components/CommentList'
+import ValuesList from '@/Components/ValuesList'
 
 export default function Home() {
     return (
         <main>
             Nate&apos;s value tracker
-            <CommentsList />
+            <ValuesList />
         </main>
     )
 }
