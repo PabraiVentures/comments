@@ -2,9 +2,8 @@
 
 import { useState } from 'react'
 import Comment from './Comment'
-import loadValues, { newEnhancedValue } from '@/app/ValuesLoader'
+import loadValues, { EnhancedValue, newEnhancedValue } from '@/app/valuesLoader'
 import { randomUUID } from 'crypto'
-import { EnhancedValue, Value } from '@/app/ValuesLoader'
 
 export default function CommentsList() {
     const [comments, setComments] = useState(() => {

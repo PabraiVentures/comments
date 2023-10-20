@@ -1,6 +1,6 @@
 'use client'
+import { EnhancedValue, newEnhancedValue } from '@/app/valuesLoader'
 import { useState } from 'react'
-import { EnhancedValue, Value, newEnhancedValue } from '@/app/ValuesLoader'
 
 interface CommentProps {
     comment: EnhancedValue
