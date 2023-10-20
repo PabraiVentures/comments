@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Comment from './Comment'
 import loadValues, { EnhancedValue, newEnhancedValue } from '@/app/valuesLoader'
-import { randomUUID } from 'crypto'
 
 export default function CommentsList() {
     const [comments, setComments] = useState(() => {
@@ -25,7 +24,10 @@ export default function CommentsList() {
                 <input
                     value={newComment.name}
                     onChange={e => {
-                        setNewComment({ id: randomUUID(), name: e.target.value, children: [] })
+                        setNewComment({
+                            ...newComment,
+                            name: e.target.value
+                        })
                     }}
                     placeholder='Add a value...'
                     className='flex-1 p-2 rounded-md border border-gray-300 mr-2'
