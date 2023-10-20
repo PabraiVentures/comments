@@ -27,7 +27,7 @@ export default function CommentsList() {
                     onChange={e => {
                         setNewComment({ id: randomUUID(), name: e.target.value, children: [] })
                     }}
-                    placeholder='Add a comment...'
+                    placeholder='Add a value...'
                     className='flex-1 p-2 rounded-md border border-gray-300 mr-2'
                 />
                 <button

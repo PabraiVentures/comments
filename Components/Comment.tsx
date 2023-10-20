@@ -26,7 +26,7 @@ export default function Comment({ comment }: CommentProps) {
                         ...newReply,
                         name: e.target.value
                     })}
-                    placeholder='Add a reply...'
+                    placeholder='Log this value...'
                     className='flex-1 p-2 rounded-md border border-gray-300 mr-2'
                 />
                 <button
