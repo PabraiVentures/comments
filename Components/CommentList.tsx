@@ -2,23 +2,32 @@
 
 import { useState } from 'react'
 import Comment from './Comment'
+import loadValues, { newEnhancedValue } from '@/app/ValuesLoader'
+import { randomUUID } from 'crypto'
+import { EnhancedValue, Value } from '@/app/ValuesLoader'
 
 export default function CommentsList() {
-    const [comments, setComments] = useState<string[]>([])
-    const [newComment, setNewComment] = useState<string>('')
+    const [comments, setComments] = useState(() => {
+        let k = loadValues()
+        debugger;
+        return loadValues()
+    })
+    const [newComment, setNewComment] = useState<EnhancedValue>(newEnhancedValue())
 
     const handleAddComment = () => {
         const updatedComments = [...comments, newComment]
         setComments(updatedComments)
-        setNewComment('')
+        setNewComment(newEnhancedValue())
     }
 
     return (
         <div className='p-4'>
             <div className='flex mb-4'>
                 <input
-                    value={newComment}
-                    onChange={e => setNewComment(e.target.value)}
+                    value={newComment.name}
+                    onChange={e => {
+                        setNewComment({ id: randomUUID(), name: e.target.value, children: [] })
+                    }}
                     placeholder='Add a comment...'
                     className='flex-1 p-2 rounded-md border border-gray-300 mr-2'
                 />

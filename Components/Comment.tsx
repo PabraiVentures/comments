@@ -1,27 +1,31 @@
 'use client'
 import { useState } from 'react'
+import { EnhancedValue, Value, newEnhancedValue } from '@/app/ValuesLoader'
 
 interface CommentProps {
-    comment: string
+    comment: EnhancedValue
 }
 
 export default function Comment({ comment }: CommentProps) {
-    const [replies, setReplies] = useState<string[]>([])
-    const [newReply, setNewReply] = useState<string>('')
+    const [replies, setReplies] = useState<EnhancedValue[]>(comment.children)
+    const [newReply, setNewReply] = useState<EnhancedValue>(newEnhancedValue())
 
     const handleReply = () => {
         const updatedReplies = [...replies, newReply]
         setReplies(updatedReplies)
-        setNewReply('')
+        setNewReply(newEnhancedValue())
     }
 
     return (
         <div className='bg-gray-100 p-4 rounded-md my-2'>
-            <p className='text-gray-700'>{comment}</p>
+            <p className='text-gray-700'>{comment.name}</p>
             <div className='flex mt-2'>
                 <input
-                    value={newReply}
-                    onChange={e => setNewReply(e.target.value)}
+                    value={newReply.name}
+                    onChange={e => setNewReply({
+                        ...newReply,
+                        name: e.target.value
+                    })}
                     placeholder='Add a reply...'
                     className='flex-1 p-2 rounded-md border border-gray-300 mr-2'
                 />
