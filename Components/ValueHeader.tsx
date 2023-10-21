@@ -2,7 +2,7 @@
 import { EnhancedValue, newEnhancedValue } from '@/app/valuesLoader'
 import { useState } from 'react'
 import CommentElement, { createComment, CommentItem } from './CommentElement'
-import { storeComments } from '@/app/valuesLoader'
+import { storeComments } from '@/app/CommentLoader'
 import ls from "local-storage"
 
 interface ValueHeaderProps {

@@ -3,6 +3,7 @@ import { CommentItem } from "@/Components/CommentElement";
 import values from "./values.json"
 import { v4 as uuidv4 } from "uuid";
 import ls from "local-storage"
+import { getComments } from "./CommentLoader";
 
 export interface Value {
     id: string;
@@ -55,30 +56,4 @@ export default function loadValues() {
     return cleaned.filter((value) => parentIdForId.get(value.id) == null)
         .map(valueMapper)
 
-}
-
-export interface CommentUpdate {
-    comments: CommentItem[]
-    valueID: string
-}
-
-export function storeComments(update: CommentUpdate) {
-    ls.set(update.valueID, update.comments)// JSON.stringify(updatedComments)) 
-}
-
-function getComments(valueID: string) {
-    let loaded: CommentItem[] | undefined = ls.get(valueID)// JSON.stringify(updatedComments))
-    console.log(JSON.stringify(loaded))
-    if (loaded == null || loaded == undefined) {
-        return []
-    }
-    console.log("j" + JSON.stringify(loaded))
-    let transformed = loaded.map((value) => {
-        return {
-            text: value.text
-        }
-    })
-
-    let result = transformed == undefined ? [] : transformed
-    return result
 }
