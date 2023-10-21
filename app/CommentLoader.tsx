@@ -14,3 +14,7 @@ export function getComments(valueID: string) {
     let loaded: CommentItem[] = ls.get(valueID) ?? []
     return loaded
 }
+
+export function removeComments(valueID: string) {
+    ls.set(valueID, [])
+}

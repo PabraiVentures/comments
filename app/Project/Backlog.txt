@@ -1,0 +1,19 @@
+-- Core
+[x] Make a seperate component and model for Values, values should have a stable id so logs
+    across sessoions can properly reference them
+        [x] Make component for ValueHeader
+
+[x] Save logs locally
+    // How am I going to store the comments? One way is to just store in local storage as commentsForValueId and just have that be an array. Eventually I can store in pages of 10, but for now it is find to
+    just store these as {valueID : [CommentItem]}
+[] Add timestamps to logs
+[] Add delete button (comments need ID for this)
+[] Only show 10 logs at a time and allow asking for 10 more
+
+-- UX
+[] Make it so comments are collapsed by default, 1 section has comments at a time
+
+
+-- Firebase
+[] Add firebase auth
+[] Store comments in firebase

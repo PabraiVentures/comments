@@ -2,7 +2,7 @@
 import { EnhancedValue, newEnhancedValue } from '@/app/valuesLoader'
 import { useState } from 'react'
 import CommentElement, { createComment, CommentItem } from './CommentElement'
-import { storeComments } from '@/app/CommentLoader'
+import { removeComments, storeComments } from '@/app/CommentLoader'
 import ls from "local-storage"
 
 interface ValueHeaderProps {
@@ -22,6 +22,18 @@ export default function ValueHeader({ value, depth }: ValueHeaderProps) {
         setNewComment(createComment())
         storeComments({ comments: updatedComments, valueID: value.id })
     }
+
+    const deleteComment = (commentID: string) => {
+        let newComments = comments.filter((comment) => {
+            return comment.id !== commentID
+        })
+        setComments(newComments)
+        removeComments(value.id)
+
+        console.log("new comments " + JSON.stringify(newComments))
+        storeComments({ comments: newComments, valueID: value.id })
+    }
+
     let isLeaf = depth == 1
     if (isLeaf) {
         return (
@@ -29,7 +41,7 @@ export default function ValueHeader({ value, depth }: ValueHeaderProps) {
                 <p className='text-gray-700'>{value.name}</p>
                 <div className='ml-4 mt-2'>
                     {comments.map((comment, index) => (
-                        <CommentElement key={index} comment={comment} />
+                        <CommentElement key={index} comment={comment} onDeleteClicked={deleteComment} />
                     ))}
                 </div>
                 <div className='flex mt-2'>
