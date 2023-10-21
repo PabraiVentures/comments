@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 interface CommentProps {
     comment: CommentItem
-    onDeleteClicked(commentID: string)
+    onDeleteClicked(commentID: string): void
 }
 
 export interface CommentItem {
