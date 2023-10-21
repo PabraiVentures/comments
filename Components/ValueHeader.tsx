@@ -2,7 +2,8 @@
 import { EnhancedValue, newEnhancedValue } from '@/app/valuesLoader'
 import { useState } from 'react'
 import CommentElement, { createComment, CommentItem } from './CommentElement'
-//import CommentItem from './CommentElement'
+import { storeComments } from '@/app/valuesLoader'
+import ls from "local-storage"
 
 interface ValueHeaderProps {
     value: EnhancedValue
@@ -11,14 +12,16 @@ interface ValueHeaderProps {
 
 export default function ValueHeader({ value, depth }: ValueHeaderProps) {
     const children = value.children
-    const [comments, setComments] = useState<CommentItem[]>(value.comments || [])
+    const [comments, setComments] = useState<CommentItem[]>(() => {
+        return value.comments
+    })
     const [newComment, setNewComment] = useState<CommentItem>(createComment())
-    const handleReply = () => {
+    const handleComment = () => {
         const updatedComments = [...comments, newComment]
         setComments(updatedComments)
         setNewComment(createComment())
+        storeComments({ comments: updatedComments, valueID: value.id })
     }
-
     let isLeaf = depth == 1
     if (isLeaf) {
         return (
@@ -40,7 +43,7 @@ export default function ValueHeader({ value, depth }: ValueHeaderProps) {
                         className='flex-1 p-2 rounded-md border border-gray-300 mr-2'
                     />
                     <button
-                        onClick={handleReply}
+                        onClick={handleComment}
                         className='bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600'
                     >
                         Log

@@ -4,16 +4,10 @@ import { useState } from 'react'
 import CommentElement from './CommentElement'
 import ValueHeader from './ValueHeader'
 import loadValues, { EnhancedValue, newEnhancedValue } from '@/app/valuesLoader'
-import ls from 'local-storage'
-
+import ls from "local-storage"
 
 export default function ValuesList() {
     const [values, setValues] = useState(() => {
-        let k = loadValues()
-        /*
-        let g = ls.get("pies") || "empty"
-        console.log("pies is " + JSON.stringify(g))
-        ls.set("pies", "apple")*/
         return loadValues()
     })
 
