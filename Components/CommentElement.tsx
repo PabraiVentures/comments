@@ -11,10 +11,11 @@ interface CommentProps {
 export interface CommentItem {
     text: string
     id: string
+    createdAt: Date
 }
 
 export function createComment(): CommentItem {
-    return { id: uuidv4(), text: "" }
+    return { id: uuidv4(), text: "", createdAt: new Date() }
 }
 
 export default function CommentElement({ comment, onDeleteClicked }: CommentProps) {
@@ -31,16 +32,17 @@ export default function CommentElement({ comment, onDeleteClicked }: CommentProp
         onDeleteClicked(comment.id)
     }
 
+    let timeString = comment.createdAt.toLocaleDateString() + " - " + comment.createdAt.toLocaleTimeString()
     return (
         <div className='bg-gray-100 p-4 rounded-md my-2' onMouseOver={showButtons} onMouseLeave={hideButtons}>
             <div className='flex flex-row'>
                 <p className='flex-1 text-gray-700' >{comment.text}</p>
                 {buttonState &&
                     <p className='flex-none text-red-700' onClick={deleteClicked} >Delete</p>
-                    // 
 
                 }
             </div>
+            <p className='flex-1 text-gray-400'>{timeString}</p>
         </div >
     )
 }
