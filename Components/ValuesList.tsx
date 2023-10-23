@@ -11,11 +11,22 @@ export default function ValuesList() {
         return loadValues()
     })
 
+    const [collapsed, setCollapsed] = useState(false)
+
+    function toggleCollapsed() {
+        setCollapsed(!collapsed)
+    }
     return (
         <div className='p-4'>
+            {collapsed &&
+                <p className='flex-none text-blue-700' onClick={toggleCollapsed} >Show logs</p>
+            }
+            {!collapsed &&
+                <p className='flex-none text-blue-700' onClick={toggleCollapsed} >Hide logs</p>
+            }
             <div className='space-y-4'>
                 {values.map((value, index) => (
-                    <ValueHeader key={index} value={value} depth={0} />
+                    <ValueHeader key={index} value={value} depth={0} collapsed={collapsed} />
                 ))}
             </div>
         </div>

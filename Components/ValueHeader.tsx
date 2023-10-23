@@ -7,9 +7,10 @@ import { removeComments, storeComments } from '@/app/CommentLoader'
 interface ValueHeaderProps {
     value: EnhancedValue
     depth: number
+    collapsed: boolean
 }
 
-export default function ValueHeader({ value, depth }: ValueHeaderProps) {
+export default function ValueHeader({ value, depth, collapsed }: ValueHeaderProps) {
     const commentsPerPage = 10
     const children = value.children
     const [comments, setComments] = useState<CommentItem[]>(() => {
@@ -45,32 +46,30 @@ export default function ValueHeader({ value, depth }: ValueHeaderProps) {
         return (
             <div className='bg-gray-100 p-4 rounded-md my-2'>
                 <p className='text-gray-700'>{value.name}</p>
-
-                <div className='flex mt-2'>
-                    <input
-                        value={newComment.text}
-                        onChange={e => setNewComment({
-                            ...newComment,
-                            text: e.target.value
-                        })}
-                        placeholder='Log this value...'
-                        className='flex-1 p-2 rounded-md border border-gray-300 mr-2'
-                    />
-                    <button
-                        onClick={handleComment}
-                        className='bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600'
-                    >
-                        Log
-                    </button>
-                </div>
-                <div className='ml-4 mt-2'>
-                    {displayedComments.map((comment, index) => (
-                        <CommentElement key={index} comment={comment} onDeleteClicked={deleteComment} />
-                    ))}
-                    {shouldShowPreviousButton &&
-                        <p className='flex-none text-blue-700' onClick={showMoreComments} >Previous logs...</p>
-                    }
-                </div>
+                {(!collapsed) &&
+                    <><div className='flex mt-2'>
+                        <input
+                            value={newComment.text}
+                            onChange={e => setNewComment({
+                                ...newComment,
+                                text: e.target.value
+                            })}
+                            placeholder='Log this value...'
+                            className='flex-1 p-2 rounded-md border border-gray-300 mr-2' />
+                        <button
+                            onClick={handleComment}
+                            className='bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600'
+                        >
+                            Log
+                        </button>
+                    </div><div className='ml-4 mt-2'>
+                            {displayedComments.map((comment, index) => (
+                                <CommentElement key={index} comment={comment} onDeleteClicked={deleteComment} />
+                            ))}
+                            {shouldShowPreviousButton &&
+                                <p className='flex-none text-blue-700' onClick={showMoreComments}>Previous logs...</p>}
+                        </div></>
+                }
             </div>
         )
     } else {
@@ -79,7 +78,7 @@ export default function ValueHeader({ value, depth }: ValueHeaderProps) {
                 <p className='text-gray-700'>{value.name}</p>
                 <div className='ml-4 mt-2'>
                     {children.map((reply, index) => (
-                        <ValueHeader key={index} value={reply} depth={depth + 1} />
+                        <ValueHeader key={index} value={reply} depth={depth + 1} collapsed={collapsed} />
                     ))}
                 </div>
             </div>
