@@ -29,7 +29,6 @@ export default function ValueHeader({ value, depth }: ValueHeaderProps) {
         setComments(newComments)
         removeComments(value.id)
 
-        console.log("new comments " + JSON.stringify(newComments))
         storeComments({ comments: newComments, valueID: value.id })
     }
 
