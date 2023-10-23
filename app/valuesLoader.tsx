@@ -2,7 +2,6 @@
 import { CommentItem } from "@/Components/CommentElement";
 import values from "./values.json"
 import { v4 as uuidv4 } from "uuid";
-import ls from "local-storage"
 import { getComments } from "./CommentLoader";
 
 export interface Value {
@@ -45,7 +44,7 @@ export default function loadValues() {
         let childrenIDs = value?.childrenIDs ?? []
         return {
             ...value,
-            comments: getComments(value.id), // todo load in comments
+            comments: getComments(value.id) ?? [], // todo load in comments
             children: childrenIDs
                 .map((id) => valuesById.get(id))
                 .filter((value): value is Value => value !== undefined)
