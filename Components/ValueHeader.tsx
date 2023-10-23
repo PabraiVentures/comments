@@ -1,6 +1,6 @@
 'use client'
 import { EnhancedValue, newEnhancedValue } from '@/app/valuesLoader'
-import { useState } from 'react'
+import { KeyboardEventHandler, useState } from 'react'
 import CommentElement, { createComment, CommentItem } from './CommentElement'
 import { removeComments, storeComments } from '@/app/CommentLoader'
 
@@ -39,6 +39,13 @@ export default function ValueHeader({ value, depth, collapsed }: ValueHeaderProp
     const showMoreComments = () => {
         setCurrentPage(currentPage + 1)
     }
+
+
+    const onKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            handleComment()
+        }
+    }
     let displayedComments = comments.slice(0, ((currentPage + 1) * commentsPerPage))
     let shouldShowPreviousButton = displayedComments.length < comments.length
     let isLeaf = depth == 1
@@ -50,6 +57,7 @@ export default function ValueHeader({ value, depth, collapsed }: ValueHeaderProp
                     <><div className='flex mt-2'>
                         <input
                             value={newComment.text}
+                            onKeyDown={onKeyDown}
                             onChange={e => setNewComment({
                                 ...newComment,
                                 text: e.target.value

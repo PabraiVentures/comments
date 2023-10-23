@@ -6,7 +6,7 @@
 [x] Save logs locally
     // How am I going to store the comments? One way is to just store in local storage as commentsForValueId and just have that be an array. Eventually I can store in pages of 10, but for now it is find to
     just store these as {valueID : [CommentItem]}
-[] Add timestamps to logs
+[x] Add timestamps to logs
 [x] Add delete button (comments need ID for this)
 [x] Only show 10 logs at a time and allow asking for 10 more
 

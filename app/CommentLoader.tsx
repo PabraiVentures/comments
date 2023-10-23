@@ -7,6 +7,12 @@ export interface CommentUpdate {
     valueID: string
 }
 
+interface RawComment {
+    id: string
+    createdAt: string
+    text: string
+}
+
 export function storeComments(update: CommentUpdate) {
     if (update.comments.length > 0) {
         ls(update.valueID, update.comments)
@@ -16,8 +22,16 @@ export function storeComments(update: CommentUpdate) {
 }
 
 export function getComments(valueID: string) {
-    let loaded: CommentItem[] = get(valueID)
-    return loaded
+    let rawComments: RawComment[] = get(valueID)
+    if (rawComments == null) {
+        return []
+    }
+    return rawComments.map((comment: any) => {
+        return {
+            ...comment,
+            createdAt: new Date(comment.createdAt)
+        }
+    })
 }
 
 export function removeComments(valueID: string) {
