@@ -10,13 +10,16 @@ interface ValueHeaderProps {
 }
 
 export default function ValueHeader({ value, depth }: ValueHeaderProps) {
+    const commentsPerPage = 10
     const children = value.children
     const [comments, setComments] = useState<CommentItem[]>(() => {
         return value.comments
     })
     const [newComment, setNewComment] = useState<CommentItem>(createComment())
+    const [currentPage, setCurrentPage] = useState(0)
+
     const handleComment = () => {
-        const updatedComments = [...comments, newComment]
+        const updatedComments = [newComment, ...comments]
         setComments(updatedComments)
         setNewComment(createComment())
         storeComments({ comments: updatedComments, valueID: value.id })
@@ -32,16 +35,17 @@ export default function ValueHeader({ value, depth }: ValueHeaderProps) {
         storeComments({ comments: newComments, valueID: value.id })
     }
 
+    const showMoreComments = () => {
+        setCurrentPage(currentPage + 1)
+    }
+    let displayedComments = comments.slice(0, ((currentPage + 1) * commentsPerPage))
+    let shouldShowPreviousButton = displayedComments.length < comments.length
     let isLeaf = depth == 1
     if (isLeaf) {
         return (
             <div className='bg-gray-100 p-4 rounded-md my-2'>
                 <p className='text-gray-700'>{value.name}</p>
-                <div className='ml-4 mt-2'>
-                    {comments.map((comment, index) => (
-                        <CommentElement key={index} comment={comment} onDeleteClicked={deleteComment} />
-                    ))}
-                </div>
+
                 <div className='flex mt-2'>
                     <input
                         value={newComment.text}
@@ -58,6 +62,14 @@ export default function ValueHeader({ value, depth }: ValueHeaderProps) {
                     >
                         Log
                     </button>
+                </div>
+                <div className='ml-4 mt-2'>
+                    {displayedComments.map((comment, index) => (
+                        <CommentElement key={index} comment={comment} onDeleteClicked={deleteComment} />
+                    ))}
+                    {shouldShowPreviousButton &&
+                        <p className='flex-none text-blue-700' onClick={showMoreComments} >Previous logs...</p>
+                    }
                 </div>
             </div>
         )
